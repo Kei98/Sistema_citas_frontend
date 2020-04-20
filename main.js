@@ -28,7 +28,6 @@ Vue.component('product', {
                 :style="{ backgroundColor: variant.variantColor }"
                 @mouseover="updateProduct(index)">
                     </div>
-
                 <button v-on:click="addtoCart"
                         :disabled="inventory==0"
                         :class="{ disabledButton: inventory==0 }"
@@ -112,16 +111,13 @@ Vue.component('product-tabs', {
             <br>
             <product-subtabs></product-subtabs>
         </div>
-
         <div v-show= "selectedTab === 'Ebais'">
             <br>//Submenu2
         <ebais></ebais>
         </div>
-
         <div v-show= "selectedTab === 'Usuarios'">
             <br>//Submenu3
         </div>
-
         <div v-show= "selectedTab === 'Citas'">
             <br>//Submenu4
         </div>
@@ -130,19 +126,13 @@ Vue.component('product-tabs', {
     data() {
         return {
             tabs: ['Doctores', 'Ebais', 'Usuarios', 'Citas'],
-            selectedTab: 'Doctores',
-            selectedTab0: selectedTab
+            selectedTab: 'Doctores'
+            // selectedTab0: false
         }
     }
 })
 
 Vue.component('product-subtabs', {
-    props: {
-        selectedTab0: {
-            type: String,
-            required: true
-        }
-    },
     template: `
     <div>
         <span :class="{ activeTab: selectedTab === tab }"
@@ -151,16 +141,13 @@ Vue.component('product-subtabs', {
         <div v-show= "selectedTab === 'Registrar'">
             <br>//Submenu1
         </div>
-
         <div v-show= "selectedTab === 'Actualizar'">
             <br>//Submenu2
         <ebais></ebais>
         </div>
-
         <div v-show= "selectedTab === 'Eliminar'">
             <br>//Submenu3
         </div>
-
         <div v-show= "selectedTab === 'Mostrar'">
             <br>//Submenu4
         </div>
@@ -178,55 +165,24 @@ Vue.component('product-subtabs', {
 Vue.component('ebais', {
     template: `
     <form class="review-form" @submit.prevent="registrar">
-
       <p>
         <label for="telefono">Telefono:</label>
         <input id="telefono" v-model="telefono" placeholder="telefono">
       </p>
-
       <p>
         <label for="provincia">Provincia:</label>
         <input id="provincia" v-model="provincia" placeholder="provincia">
       </p>
-
       <p>
         <label for="canton">Canton:</label>
         <input id="canton" v-model="canton" placeholder="canton">
       </p>
-
       <p>
         <label for="distrito">Distrito:</label>
         <input id="distrito" v-model="distrito" placeholder="distrito">
       </p>
-
       <input type="submit" value="Submit">
       </form>
-
-      <form class="review-form" @submit.prevent="actualizar">
-
-      <p>
-        <label for="telefono">Telefono:</label>
-        <input id="telefono" v-model="telefono" placeholder="telefono">
-      </p>
-
-      <p>
-        <label for="provincia">Provincia:</label>
-        <input id="provincia" v-model="provincia" placeholder="provincia">
-      </p>
-
-      <p>
-        <label for="canton">Canton:</label>
-        <input id="canton" v-model="canton" placeholder="canton">
-      </p>
-
-      <p>
-        <label for="distrito">Distrito:</label>
-        <input id="distrito" v-model="distrito" placeholder="distrito">
-      </p>
-
-      <input type="submit" value="Submit">
-      </form>
-
     
     `,
     data() {
@@ -268,14 +224,12 @@ Vue.component('ebais', {
 Vue.component('product-review', {
     template: `
     <form class="review-form" @submit.prevent="onSubmit">
-
     <p v-if="errors.length >0">
         <b>Please correct the following error(s):</b>
         <ul>
         <li v-for="error in errors">{{ error }}</li>
         </ul>
     </p>
-
       <p>
         <label for="name">Name:</label>
         <input id="name" v-model="name" placeholder="name">
@@ -385,4 +339,4 @@ var app = new Vue({
     //         return this.variants[this.selectedVariant].variantQuantity
     //     }
     // }
-})
+}) 
