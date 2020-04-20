@@ -130,13 +130,19 @@ Vue.component('product-tabs', {
     data() {
         return {
             tabs: ['Doctores', 'Ebais', 'Usuarios', 'Citas'],
-            selectedTab: 'Doctores'
-            // selectedTab0: false
+            selectedTab: 'Doctores',
+            selectedTab0: selectedTab
         }
     }
 })
 
 Vue.component('product-subtabs', {
+    props: {
+        selectedTab0: {
+            type: String,
+            required: true
+        }
+    },
     template: `
     <div>
         <span :class="{ activeTab: selectedTab === tab }"
@@ -172,6 +178,31 @@ Vue.component('product-subtabs', {
 Vue.component('ebais', {
     template: `
     <form class="review-form" @submit.prevent="registrar">
+
+      <p>
+        <label for="telefono">Telefono:</label>
+        <input id="telefono" v-model="telefono" placeholder="telefono">
+      </p>
+
+      <p>
+        <label for="provincia">Provincia:</label>
+        <input id="provincia" v-model="provincia" placeholder="provincia">
+      </p>
+
+      <p>
+        <label for="canton">Canton:</label>
+        <input id="canton" v-model="canton" placeholder="canton">
+      </p>
+
+      <p>
+        <label for="distrito">Distrito:</label>
+        <input id="distrito" v-model="distrito" placeholder="distrito">
+      </p>
+
+      <input type="submit" value="Submit">
+      </form>
+
+      <form class="review-form" @submit.prevent="actualizar">
 
       <p>
         <label for="telefono">Telefono:</label>
